@@ -48,7 +48,7 @@ restService.post("/echo", function(req, res) {
 
 restService.post("/audio", function(req, res) {
   var speech = "";
-  switch (req.body.result.parameters.AudioSample.toLowerCase()) {
+  switch (req.toLowerCase()) {
     //Speech Synthesis Markup Language 
     case "music one":
       speech =
