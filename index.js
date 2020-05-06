@@ -140,11 +140,21 @@ restService.post("/audio", function(req, res) {
 });
 
 restService.post("/video", function(req, res) {
+  var speech = "";
+  switch (req.body.result.parameters.AudioSample.toLowerCase()) {
+    //Speech Synthesis Markup Language 
+    case "music one":
+      speech =
+        '<speak><audio src="https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg">did not get your audio file</audio></speak>';
+      break;
+    case "music two":
+      speech =
+        '<speak><audio clipBegin="1s" clipEnd="3s" src="https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg">did not get your audio file</audio></speak>';
+      break;
+  }
   return res.json({
-    speech:
-      '<speak>  <audio src="https://www.youtube.com/watch?v=VX7SSnvpj-8">did not get your MP3 audio file</audio></speak>',
-    displayText:
-      '<speak>  <audio src="https://www.youtube.com/watch?v=VX7SSnvpj-8">did not get your MP3 audio file</audio></speak>',
+    speech: speech,
+    displayText: speech,
     source: "webhook-echo-sample"
   });
 });
